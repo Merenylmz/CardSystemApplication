@@ -1,20 +1,50 @@
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import Home from './screens/Home';
+import AllProducts from './screens/Products/AllProducts';
+import { Colors } from './constant/constant';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
-export default function App() {
+
+const BottomTabs = createBottomTabNavigator();
+const Stack = createNativeStackNavigator();
+
+const BottomTabsOverview = () =>{
+  const navigation = useNavigation();
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <BottomTabs.Navigator screenOptions={{
+      headerStyle: {backgroundColor: Colors.primaryColor},
+      headerTintColor: "#fff",
+      tabBarStyle: {backgroundColor: Colors.primaryColor},
+      tabBarActiveTintColor: "#aff"
+    }}>
+      <BottomTabs.Screen name='HomePage' component={Home} options={{
+        tabBarIcon: ({color, size})=><Ionicons name="home" color={color} size={size}/>,
+        title: "Home"
+      }}/>
+      <BottomTabs.Screen name='AllProducts' component={AllProducts}  options={{
+        tabBarIcon: ({color, size})=><Ionicons name="list" color={color} size={size}/>,
+        title: "Products"
+      }}/>
+    </BottomTabs.Navigator>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default function App() {
+  return (
+    <>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name='BottomTabs' component={BottomTabsOverview} options={{
+            headerShown: false,
+            animation: 'fade',
+          }}/>
+        </Stack.Navigator>
+      </NavigationContainer>
+      <StatusBar style='light'/>
+    </>
+  );
+}
+
