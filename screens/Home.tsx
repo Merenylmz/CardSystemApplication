@@ -1,47 +1,15 @@
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import Layout from "../components/Layout";
+import ListItem from "../components/Actions/ListItem";
 
 const Home = () => {
     return (
         <Layout>
-            <Pressable style={({pressed})=>pressed && styles.pressed}>
-                <View style={styles.container}>
-                    <View style={styles.imageContainer}>
-                        <Image src="https://picsum.photos/100/100" width={100} height={100}/>
-                    </View>
-                    <View style={styles.detailContainer}>
-                        <Text style={styles.title}>Title</Text>
-                        <Text>Price</Text>
-                    </View>
-                </View>
-            </Pressable>
+            <ListItem onPress={()=>{}} data={[{}]}/>
         </Layout>
     );
 };
 
 export default Home;
 
-const styles = StyleSheet.create({
-    container:{
-        flexDirection: "row",
-        borderWidth: 1,
-        height: 100,
-        overflow: "hidden",
-        borderRadius: 10
-    },
-    imageContainer: {
-        borderRightWidth: 2
-    },
-    detailContainer: {
-        padding: 8
-    },
-    title: {
-        fontSize: 25,
-    },
-    pressed: {
-        opacity: .8,
-        shadowColor: "black",
-        // shadowOffset: 
-    }
-    
-});
+const styles = StyleSheet.create({});

@@ -10,9 +10,9 @@ const Layout = ({children}: {children: React.ReactNode}) => {
 export default Layout;
 
 const styles = StyleSheet.create({
-    container: {
-        paddingHorizontal: 16,
-        paddingTop: 16,
-        flex: 1
-    }
+  container: {
+    paddingHorizontal: 16,
+    paddingTop: 16,
+    flex: 1
+  }
 });

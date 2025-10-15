@@ -1,13 +1,18 @@
-import { StyleSheet, Text, View } from "react-native";
+import { FlatList, StyleSheet, Text, View } from "react-native";
+import ListItem from "./ListItem";
 
-const List = () => {
+const List = ({data}: {data: Array<Object>}) => {
     return (
-        <View>
-            <Text>List</Text>
+        <View style={styles.container}>
+            <FlatList data={data} renderItem={({item})=><ListItem onPress={()=>{}} data={item}/>}/>
         </View>
     );
 };
 
 export default List;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+    container: {
+        flex: 1
+    }
+});
