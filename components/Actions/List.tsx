@@ -1,7 +1,8 @@
-import { FlatList, StyleSheet, Text, View } from "react-native";
+import { FlatList, StyleSheet, View } from "react-native";
 import ListItem from "./ListItem";
+import { ProductTypes } from "../../types/Types";
 
-const List = ({data}: {data: Array<Object>}) => {
+const List = ({data}: {data: Array<ProductTypes>}) => {
     return (
         <View style={styles.container}>
             <FlatList data={data} renderItem={({item})=><ListItem onPress={()=>{}} data={item}/>}/>

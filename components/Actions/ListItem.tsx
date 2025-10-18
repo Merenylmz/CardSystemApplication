@@ -1,7 +1,8 @@
-import { Image, Pressable, PressableProps, StyleSheet, Text, View } from "react-native";
+import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import { GestureResponderEvent } from "react-native/types_generated/index";
+import { ProductTypes } from "../../types/Types";
 
-const ListItem = ({onPress, data} : {onPress: GestureResponderEvent, data: Object}) => {
+const ListItem = ({onPress, data} : {onPress: GestureResponderEvent, data: ProductTypes}) => {
   return (
     <View>
       <Pressable style={({pressed})=>pressed && styles.pressed} onPress={onPress}>
@@ -10,8 +11,8 @@ const ListItem = ({onPress, data} : {onPress: GestureResponderEvent, data: Objec
                   <Image src="https://picsum.photos/100/100" width={100} height={100}/>
               </View>
               <View style={styles.detailContainer}>
-                  <Text style={styles.title}>Title</Text>
-                  <Text>Price</Text>
+                  <Text style={styles.title}>{data.title}</Text>
+                  <Text>{data.price} TL</Text>
               </View>
           </View>
       </Pressable>
@@ -27,8 +28,9 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     height: 100,
     overflow: "hidden",
-    borderRadius: 10
-    },
+    borderRadius: 10,
+    marginVertical: 10
+  },
     imageContainer: {
       borderRightWidth: 2
     },
