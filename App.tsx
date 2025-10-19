@@ -6,13 +6,15 @@ import AllProducts from './screens/Products/AllProducts';
 import { Colors } from './constant/constant';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import Detail from './screens/Products/Detail';
+import IconButton from './components/UI/IconButton';
 
 
 const BottomTabs = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
 const BottomTabsOverview = () =>{
-  const navigation = useNavigation();
+  // const navigation = useNavigation();
   return (
     <BottomTabs.Navigator screenOptions={{
       headerStyle: {backgroundColor: Colors.primaryColor},
@@ -40,6 +42,15 @@ export default function App() {
           <Stack.Screen name='BottomTabs' component={BottomTabsOverview} options={{
             headerShown: false,
             animation: 'fade',
+          }}/>
+          <Stack.Screen name='Details' component={Detail} options={{
+            headerStyle: {backgroundColor: Colors.primaryColor,},
+            headerTintColor: "#fff",
+            headerShown: true,
+            animation: 'fade',
+            headerRight: ({tintColor})=>{
+             return <IconButton color={tintColor as string} size={24} name='star'/>
+            }
           }}/>
         </Stack.Navigator>
       </NavigationContainer>

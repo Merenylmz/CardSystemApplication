@@ -1,8 +1,7 @@
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
-import { GestureResponderEvent } from "react-native/types_generated/index";
 import { ProductTypes } from "../../types/Types";
 
-const ListItem = ({onPress, data} : {onPress: GestureResponderEvent, data: ProductTypes}) => {
+const ListItem = ({onPress, data} : {onPress: any, data: ProductTypes}) => {
   return (
     <View>
       <Pressable style={({pressed})=>pressed && styles.pressed} onPress={onPress}>

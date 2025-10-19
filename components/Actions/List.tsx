@@ -1,11 +1,13 @@
 import { FlatList, StyleSheet, View } from "react-native";
 import ListItem from "./ListItem";
 import { ProductTypes } from "../../types/Types";
+import { useNavigation } from "@react-navigation/native";
 
 const List = ({data}: {data: Array<ProductTypes>}) => {
+    const navigation = useNavigation();
     return (
         <View style={styles.container}>
-            <FlatList data={data} renderItem={({item})=><ListItem onPress={()=>{}} data={item}/>}/>
+            <FlatList data={data} renderItem={({item})=><ListItem onPress={()=>navigation.navigate("Details", item)} data={item}/>}/>
         </View>
     );
 };
