@@ -12,4 +12,5 @@ const IconButton = ({name, size, color, onPress}: {name: string, size: number, c
 
 export default IconButton;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+});
