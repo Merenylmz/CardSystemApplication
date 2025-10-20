@@ -1,13 +1,17 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { Action, createSlice } from "@reduxjs/toolkit";
 
 const ordersSlices = createSlice({
     name: "products",
     initialState: {
-        ids:[]
+        ids: [] as any[]
     },
     reducers: {
-        addOrders: (state, action) =>{},
-        deleteOrders: (state, action) =>{},
+        addOrders: (state, action: {payload: {id: any}}) =>{
+            state.ids.push(action.payload.id);
+        },
+        deleteOrders: (state, action: {payload: {id: any}}) =>{
+            state.ids.splice(state.ids.indexOf(action.payload.id), 1);
+        },
     }
 });
 

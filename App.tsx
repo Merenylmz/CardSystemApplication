@@ -5,9 +5,12 @@ import Home from './screens/Home';
 import AllProducts from './screens/Products/AllProducts';
 import { Colors } from './constant/constant';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Ionicons from '@expo/vector-icons/Ionicons';
+import {Ionicons} from '@expo/vector-icons';
 import Detail from './screens/Products/Detail';
 import IconButton from './components/UI/IconButton';
+import { Provider } from 'react-redux';
+import store from './store/store';
+import Login from './screens/Authentication/Login';
 
 
 const BottomTabs = createBottomTabNavigator();
@@ -30,6 +33,10 @@ const BottomTabsOverview = () =>{
         tabBarIcon: ({color, size})=><Ionicons name="list" color={color} size={size}/>,
         title: "Products"
       }}/>
+      <BottomTabs.Screen name='Login' component={Login}  options={{
+        tabBarIcon: ({color, size})=><Ionicons name="person" color={color} size={size}/>,
+        title: "Login"
+      }}/>
     </BottomTabs.Navigator>
   );
 }
@@ -37,24 +44,24 @@ const BottomTabsOverview = () =>{
 export default function App() {
   return (
     <>
-      <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen name='BottomTabs' component={BottomTabsOverview} options={{
-            headerShown: false,
-            animation: 'fade',
-          }}/>
-          <Stack.Screen name='Details' component={Detail} options={{
-            headerStyle: {backgroundColor: Colors.primaryColor,},
-            headerTintColor: "#fff",
-            headerShown: true,
-            animation: 'fade',
-            headerRight: ({tintColor})=>{
-             return <IconButton color={tintColor as string} size={24} name='star'/>
-            }
-          }}/>
-        </Stack.Navigator>
-      </NavigationContainer>
-      <StatusBar style='light'/>
+      <Provider store={store}>
+        <NavigationContainer>
+          <Stack.Navigator>
+            <Stack.Screen name='BottomTabs' component={BottomTabsOverview} options={{
+              headerShown: false,
+              animation: 'fade',
+            }}/>
+            <Stack.Screen name='Details' component={Detail} options={{
+              headerStyle: {backgroundColor: Colors.primaryColor,},
+              headerTintColor: "#fff",
+              headerShown: true,
+              animation: 'fade',
+              
+            }}/>
+          </Stack.Navigator>
+        </NavigationContainer>
+        <StatusBar style='light'/>
+      </Provider>
     </>
   );
 }
