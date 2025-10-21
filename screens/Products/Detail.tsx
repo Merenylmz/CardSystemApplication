@@ -22,7 +22,6 @@ const Detail = () => {
       } else {
         dispatch(addOrders({id: product._id}));
       }
-      console.log("Trial");
     }
   };
 

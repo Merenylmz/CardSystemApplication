@@ -8,15 +8,17 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import {Ionicons} from '@expo/vector-icons';
 import Detail from './screens/Products/Detail';
 import IconButton from './components/UI/IconButton';
-import { Provider } from 'react-redux';
-import store from './store/store';
+import { Provider, useSelector } from 'react-redux';
+import store, { RootState } from './store/store';
 import Login from './screens/Authentication/Login';
+import MyOrders from './screens/Orders/MyOrders';
 
 
 const BottomTabs = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
 const BottomTabsOverview = () =>{
+  const token = useSelector((state: RootState)=>state.auth.token);
   // const navigation = useNavigation();
   return (
     <BottomTabs.Navigator screenOptions={{
@@ -33,15 +35,23 @@ const BottomTabsOverview = () =>{
         tabBarIcon: ({color, size})=><Ionicons name="list" color={color} size={size}/>,
         title: "Products"
       }}/>
-      <BottomTabs.Screen name='Login' component={Login}  options={{
-        tabBarIcon: ({color, size})=><Ionicons name="person" color={color} size={size}/>,
-        title: "Login"
-      }}/>
+      {
+        !token ?
+        <BottomTabs.Screen name='Login' component={Login}  options={{
+          tabBarIcon: ({color, size})=><Ionicons name="person" color={color} size={size}/>,
+          title: "Login"
+        }}/> : 
+        <BottomTabs.Screen name='MyOrders' component={MyOrders}  options={{
+          tabBarIcon: ({color, size})=><Ionicons name="person" color={color} size={size}/>,
+          title: "My Order"
+        }}/>
+      }
     </BottomTabs.Navigator>
   );
 }
 
 export default function App() {
+ 
   return (
     <>
       <Provider store={store}>
@@ -56,7 +66,6 @@ export default function App() {
               headerTintColor: "#fff",
               headerShown: true,
               animation: 'fade',
-              
             }}/>
           </Stack.Navigator>
         </NavigationContainer>
