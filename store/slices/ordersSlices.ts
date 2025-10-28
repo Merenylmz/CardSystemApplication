@@ -1,4 +1,4 @@
-import { Action, createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 const ordersSlices = createSlice({
     name: "products",
@@ -12,9 +12,13 @@ const ordersSlices = createSlice({
         deleteOrders: (state, action: {payload: {id: any}}) =>{
             state.ids.splice(state.ids.indexOf(action.payload.id), 1);
         },
+        resetOrders: (state, action) =>{
+            state.ids = [] as any[];
+        }
     }
 });
-
+//m.erenyilmaz2007@gmail.com    
 export default ordersSlices.reducer;
 export const addOrders = ordersSlices.actions.addOrders;
 export const deleteOrders = ordersSlices.actions.deleteOrders;
+export const resetOrder = ordersSlices.actions.resetOrders;

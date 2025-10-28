@@ -18,7 +18,7 @@ const MyOrdersItem = ({data, onPress}: {data: any, onPress?:any}) => {
     </Pressable>
     </View>
   );
-};
+};//m.erenyilmaz2007@gmail.com
 
 export default MyOrdersItem;
 

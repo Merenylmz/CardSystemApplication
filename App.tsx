@@ -1,5 +1,5 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 import Home from './screens/Home';
 import AllProducts from './screens/Products/AllProducts';
@@ -7,11 +7,12 @@ import { Colors } from './constant/constant';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import {Ionicons} from '@expo/vector-icons';
 import Detail from './screens/Products/Detail';
-import IconButton from './components/UI/IconButton';
+// import IconButton from './components/UI/IconButton';
 import { Provider, useSelector } from 'react-redux';
 import store, { RootState } from './store/store';
 import Login from './screens/Authentication/Login';
 import MyOrders from './screens/Orders/MyOrders';
+import SuccessPage from './screens/SuccessPage';
 
 
 const BottomTabs = createBottomTabNavigator();
@@ -62,8 +63,12 @@ export default function App() {
               animation: 'fade',
             }}/>
             <Stack.Screen name='Details' component={Detail} options={{
-              headerStyle: {backgroundColor: Colors.primaryColor,},
+              headerStyle: {backgroundColor: Colors.primaryColor},
               headerTintColor: "#fff",
+              headerShown: true,
+              animation: 'fade',
+            }}/>
+            <Stack.Screen name='SuccessPage' component={SuccessPage} options={{
               headerShown: true,
               animation: 'fade',
             }}/>
