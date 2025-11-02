@@ -6,6 +6,7 @@ import IconButton from "../../components/UI/IconButton";
 import { useDispatch, useSelector } from "react-redux";
 import { addOrders, deleteOrders } from "../../store/slices/ordersSlices";
 import { AppDispatch, RootState } from "../../store/store";
+import { Gesture, GestureDetector } from "react-native-gesture-handler";
 
 const Detail = () => {
   const route = useRoute();
@@ -33,11 +34,18 @@ const Detail = () => {
     });
 
   }, [navigation, handleStarButton]);
+
+  const deneme = Gesture.Tap().numberOfTaps(2).onStart(()=>{
+    console.log(product.title);
+  });
+  
   
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <Image source={{ uri: "https://picsum.photos/350/250" }} style={styles.image} />
-      <Text style={styles.title}>{product.title}</Text>
+      <GestureDetector gesture={deneme}>
+        <Text style={styles.title}>{product.title}</Text>
+      </GestureDetector>
       <Text style={styles.price}>${product.price}</Text>
       <Text style={styles.description}>{product.description}</Text>
     </ScrollView>

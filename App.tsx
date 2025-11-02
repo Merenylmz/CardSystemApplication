@@ -13,6 +13,8 @@ import store, { RootState } from './store/store';
 import Login from './screens/Authentication/Login';
 import MyOrders from './screens/Orders/MyOrders';
 import SuccessPage from './screens/SuccessPage';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import AddOrEditProduct from './screens/Secret/AddOrEditProduct';
 
 
 const BottomTabs = createBottomTabNavigator();
@@ -55,27 +57,32 @@ export default function App() {
  
   return (
     <>
-      <Provider store={store}>
-        <NavigationContainer>
-          <Stack.Navigator>
-            <Stack.Screen name='BottomTabs' component={BottomTabsOverview} options={{
-              headerShown: false,
-              animation: 'fade',
-            }}/>
-            <Stack.Screen name='Details' component={Detail} options={{
-              headerStyle: {backgroundColor: Colors.primaryColor},
-              headerTintColor: "#fff",
-              headerShown: true,
-              animation: 'fade',
-            }}/>
-            <Stack.Screen name='SuccessPage' component={SuccessPage} options={{
-              headerShown: true,
-              animation: 'fade',
-            }}/>
-          </Stack.Navigator>
-        </NavigationContainer>
-        <StatusBar style='light'/>
-      </Provider>
+      <GestureHandlerRootView>
+        <Provider store={store}>
+          <NavigationContainer>
+            <Stack.Navigator>
+              <Stack.Screen name='BottomTabs' component={BottomTabsOverview} options={{
+                headerShown: false,
+                animation: 'fade',
+              }}/>
+              <Stack.Screen name='Details' component={Detail} options={{
+                headerStyle: {backgroundColor: Colors.primaryColor},
+                headerTintColor: "#fff",
+                headerShown: true,
+                animation: 'fade',
+              }}/>
+              <Stack.Screen name='SuccessPage' component={SuccessPage} options={{
+                headerShown: true,
+                animation: 'fade',
+              }}/>
+              <Stack.Screen name='AddOrEditPage' component={AddOrEditProduct}  options={{
+                title: "Add Or Edit"
+              }}/>
+            </Stack.Navigator>
+          </NavigationContainer>
+          <StatusBar style='light'/>
+        </Provider>
+      </GestureHandlerRootView>
     </>
   );
 }

@@ -1,5 +1,4 @@
 import { Image, StyleSheet, Text, View } from "react-native";
-import React from "react";
 import { Pressable } from "react-native";
 
 const MyOrdersItem = ({data, onPress}: {data: any, onPress?:any}) => {
