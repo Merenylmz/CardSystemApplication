@@ -3,7 +3,6 @@ import axios from "axios";
 export const getData = async (url: string) => {
   try {
     const res = await axios.get(url);
-    console.log("Deneme", res.data);
     return res.data;
   } catch (err) {
     console.log("Error", err);

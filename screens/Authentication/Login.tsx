@@ -9,7 +9,7 @@ const Login: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
-  const navigation = useNavigation();
+  const navigation = useNavigation<any>();
 
   const handleLogin = async() => {
     if (!email || !password) {
@@ -17,7 +17,6 @@ const Login: React.FC = () => {
       return;
     }
     const data = await addOrEditData("http://172.19.16.1:3002/users/login", {email, password});
-    console.log(data);
     if (!data.token && !data.status) {
         Alert.alert("Please Check Your Informations");
         return false;
