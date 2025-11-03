@@ -91,12 +91,11 @@ const MyOrders = () => {
       console.log("deneme");
       
       const res = await deleteData(`http://172.19.16.1:3002/products/delete/${selected.id}`);
-      console.log(res);
-      
 
       products.splice(products.findIndex((item)=>item.id == selected.id), 1);
       Alert.alert("Deleted", `${selected.label} removed from your basket.`);
       setValue(null);
+      navigation.navigate("HomePage");
     }
   };
 
